@@ -1,21 +1,23 @@
-/* led-ir.c - led blinking application, testbed for IR receiver
+/* ledstrip85.c - a flashing lights project for attiny85
+ *
+ * Based on the original ledstrip project for arduino nano.
  *
  * (c) David Haworth
  *
- *  This file is part of tiny-bare-metal.
+ *  This file is part of ledstrip85.
  *
- *  tiny-bare-metal is free software: you can redistribute it and/or modify
+ *  ledstrip85 is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  tiny-bare-metal is distributed in the hope that it will be useful,
+ *  ledstrip85 is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with tiny-bare-metal.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with ledstrip85.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "tinylib.h"
 #include "tinyio.h"

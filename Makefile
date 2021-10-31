@@ -1,21 +1,21 @@
-# Makefile for led-ir (tiny bare metal)
+# Makefile for ledstrip85 - attiny85 version of ledstrip, using tiny-bare-metal libraries
 
 # Copyright David Haworth
 # 
-# This file is part of tiny-bare-metal.
+# This file is part of ledstrip85.
 # 
-# tiny-bare-metal is free software: you can redistribute it and/or modify
+# ledstrip85 is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 # 
-# tiny-bare-metal is distributed in the hope that it will be useful,
+# ledstrip85 is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU General Public License
-# along with tiny-bare-metal.  If not, see <http://www.gnu.org/licenses/>.
+# along with ledstrip85  If not, see <http://www.gnu.org/licenses/>.
 
 
 BUILD		?=	build
@@ -53,7 +53,7 @@ LD_OPT		+=	-L $(LIB_DIR)
 LD_LIB		+=	-ltiny
 LD_LIB		+=	-lm
 
-OBJS		+=	$(OBJ_DIR)/led-ir.o
+OBJS		+=	$(OBJ_DIR)/ledstrip85.o
 
 VPATH		+=	$(TLIB_DIR)
 VPATH		+=	$(TIO_DIR)
@@ -61,28 +61,28 @@ VPATH		+=	$(TIR_DIR)
 
 .PHONY:		default clean hex upload
 
-default:	$(BUILD)/led-ir.elf
+default:	$(BUILD)/ledstrip85.elf
 
 clean:
 	if [ -d $(BUILD) ] ; then rm -r $(BUILD); fi
 
-hex:		$(BUILD)/led-ir.ihex
+hex:		$(BUILD)/ledstrip85.ihex
 
 $(BUILD)/o:
 	mkdir -p $(BUILD)/o
 
-$(BUILD)/led-ir.elf:	$(OBJ_DIR) $(OBJS) $(LIB_DIR)/libtiny.a
+$(BUILD)/ledstrip85.elf:	$(OBJ_DIR) $(OBJS) $(LIB_DIR)/libtiny.a
 	$(GLD) $(LD_OPT) -o $@ $(OBJS) $(LD_LIB)
 	
 
 $(OBJ_DIR)/%.o:	%.c
 	$(GCC) $(CC_OPT) -o $@ -c $<
 
-$(BUILD)/led-ir.ihex:	$(BUILD)/led-ir.elf
+$(BUILD)/ledstrip85.ihex:	$(BUILD)/ledstrip85.elf
 	$(OBJCOPY) -O ihex -R .eeprom $< $@
 
-upload:		$(BUILD)/led-ir.ihex
-	avrdude -P $(ISPPORT) -b 19200 -c avrisp -p t85 -U flash:w:build/led-ir.ihex:i
+upload:		$(BUILD)/ledstrip85.ihex
+	avrdude -P $(ISPPORT) -b 19200 -c avrisp -p t85 -U flash:w:build/ledstrip85.ihex:i
 
 include $(TIO_DIR)/tinyio.make
 include $(TIR_DIR)/tinyir.make
