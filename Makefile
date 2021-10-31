@@ -22,9 +22,9 @@ BUILD		?=	build
 ISPPORT		?=	/dev/ttyUSB0
 OBJ_DIR		?=	$(BUILD)/o
 LIB_DIR		?=	$(BUILD)/a
-TLIB_DIR	?=	../tinylib
-TIO_DIR		?=	../tinyio
-TIR_DIR		?=	../tinyir
+TLIB_DIR	?=	../tiny-bare-metal/tinylib
+TIO_DIR		?=	../tiny-bare-metal/tinyio
+TIR_DIR		?=	../tiny-bare-metal/tinyir
 
 GCC			=	avr-gcc
 GLD			=	avr-gcc
