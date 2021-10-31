@@ -54,6 +54,7 @@ LD_LIB		+=	-ltiny
 LD_LIB		+=	-lm
 
 OBJS		+=	$(OBJ_DIR)/ledstrip85.o
+OBJS		+=	$(OBJ_DIR)/lfsr.o
 
 VPATH		+=	$(TLIB_DIR)
 VPATH		+=	$(TIO_DIR)
