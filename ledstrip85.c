@@ -24,7 +24,7 @@
  *                             |--v--|
  *                    PB5/Rst -|1   8|- Vcc
  *             (blue led) PB3 -|2   7|- PB2 (green led)
- *                        PB4 -|3   6|- PB1 (red led)
+ *   (serial out; optional) 4 -|3   6|- PB1 (red led)
  *                        Gnd -|4   5|- PB0/PCINT0 (infra-red)
  *                             |-----|
 */
@@ -45,16 +45,18 @@
 #define LED_G	PB2
 #define LED_B	PB3
 #define IR_PIN	PB0			/* Not selectable; Must be PCINT0 */
+/*				PB4 is the serial output pin, configured in the makefile */
 
 /* Hold-off time before key repeat starts (milliseconds)
 */
-#define RPT_DELAY	250
+#define REPEAT_DELAY	ms_to_ticks(250)
 
 char mode =	1;
 char speed = 10;					/* Range 0..19, controlled by INDEX+ and INDEX- buttons */
 char level[3] = { 5, 5, 5 };		/* Range 0..100, controlled by ??? */
-unsigned long lastpress;
-unsigned long lastpresstime;
+
+u16_t lastpress;
+u32_t lastpresstime;
 
 /* Shift registers for pseudo-random modes
 */
@@ -94,9 +96,7 @@ int main(void)
 	pin_mode(LED_R, OUTPUT);
 	pin_mode(LED_G, OUTPUT);
 	pin_mode(LED_B, OUTPUT);
-	pin_set(LED_R, LOW);
-	pin_set(LED_G, LOW);
-	pin_set(LED_B, LOW);
+	all_on();
 	async_init();
 	ir_init();
 	enable();
@@ -110,7 +110,7 @@ int main(void)
 		all_off();
 
 #if DBG
-		printf("Mode %d\n", mode);
+		printf(PSTR("Mode %d\n"), mode);
 #endif
 
 		switch (mode)
@@ -432,20 +432,32 @@ void mode_check(void)
 
 	if ( ir_receive(&ir_data) )
 	{
-#if 0
-		if ( key == IR_REPEAT )
+#if DBG
+		printf(PSTR("k=%02x\n"), ir_data & 0xff);
+#endif
+
+		if ( ir_data == lastpress )
 		{
-			if ( (millis() - lastpresstime) < RPT_DELAY )
+			/* Ignore all repeats until the repeat time has elapsed.
+			*/
+			if ( (read_time_32() - lastpresstime) < REPEAT_DELAY )
 			{
-				continue;
+				ir_data = 0xffff;
 			}
 		}
 		else
 		{
-			lastpress = key;
-			lastpresstime = millis();
+			/* Restart the repeat timing.
+			*/
+			lastpresstime = read_time_32();
+			lastpress = ir_data;
 		}
-#endif
+
+		if ( ir_data != 0xffff )
+		{
+			printf(PSTR("+%02x\n"), ir_data & 0xff);
+		}
+
 		switch ( ir_data )
 		{
 		case BTN_OFF:		newmode = 0;	break;
@@ -473,16 +485,23 @@ void mode_check(void)
 		default:						break;	/* No change */
 		}
 	}
+	else
+	if ( lastpress != 0xffff )
+	{
+		/* If no key received for REPEAT_DELAY time, cancel the repeat mechanism.
+		*/
+		if ( (read_time_32() - lastpresstime) >= REPEAT_DELAY )
+		{
+			lastpress = 0xffff;
+		}
+	}
 
 	if ( mode != newmode )
 	{
-#if DBG
-		printf("mode_check(): mode %d\n" newmode);
-#endif
 		mode = newmode;
 		longjmp(jb, 42);
 #if DBG
-		printf("Oops! longjmp() returned\n");
+		printf(PSTR("Oops! longjmp() returned\n"));
 #endif
 	}
 }
