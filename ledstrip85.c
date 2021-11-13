@@ -32,7 +32,7 @@
 #include "tinylib.h"
 #include "tinyio.h"
 #include <avr/pgmspace.h>
-#include "daewoo.h"
+#include "rc.h"
 #include <setjmp.h>
 
 /* Debugging info

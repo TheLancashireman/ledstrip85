@@ -41,7 +41,11 @@ CC_OPT		+=	-I $(TIO_DIR)
 CC_OPT		+=	-I $(TIR_DIR)
 CC_OPT		+=	-D ASYNC_BITRATE=9600
 CC_OPT		+=	-D ASYNC_TX_PIN=PB4
+ifeq "$(REMOTE)" "EUROPA"
+CC_OPT		+=	-D TINYIR_REMOTE="\"ir-europa-sr150.h\""
+else
 CC_OPT		+=	-D TINYIR_REMOTE="\"ir-daewoo.h\""
+endif
 CC_OPT		+=	-D IR_RX_PIN=PB0
 CC_OPT		+=	-D RBSIZE=31
 
