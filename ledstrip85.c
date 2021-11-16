@@ -37,7 +37,17 @@
 
 /* Debugging info
 */
-#define DBG	0
+#define DBG	1
+
+/* Build variants
+*/
+#define RGB		1		/* Strip of RGB leds */
+#define MONO	2		/* Three LED light chains, monochrome */
+
+/* Remote handset variants
+*/
+#define DAEWOO	1
+#define EUROPA	2
 
 /* Pin numbers
 */
@@ -433,7 +443,11 @@ void mode_check(void)
 	if ( ir_receive(&ir_data) )
 	{
 #if DBG
+#ifdef IR_EUROPA_SR150_H
+		printf(PSTR("k=%08x\n"), ir_data);
+#else
 		printf(PSTR("k=%02x\n"), ir_data & 0xff);
+#endif
 #endif
 
 		if ( ir_data == lastpress )

@@ -31,6 +31,10 @@ GLD			=	avr-gcc
 GAR			=	avr-ar
 OBJCOPY		=	avr-objcopy
 
+# Build options
+REMOTE		?= DAEWOO
+VARIANT		?= RGB
+
 CC_OPT		+=	-mmcu=attiny85
 CC_OPT		+=	-fno-builtin
 CC_OPT		+=	-Os
@@ -41,13 +45,16 @@ CC_OPT		+=	-I $(TIO_DIR)
 CC_OPT		+=	-I $(TIR_DIR)
 CC_OPT		+=	-D ASYNC_BITRATE=9600
 CC_OPT		+=	-D ASYNC_TX_PIN=PB4
-ifeq "$(REMOTE)" "EUROPA"
-CC_OPT		+=	-D TINYIR_REMOTE="\"ir-europa-sr150.h\""
-else
-CC_OPT		+=	-D TINYIR_REMOTE="\"ir-daewoo.h\""
-endif
 CC_OPT		+=	-D IR_RX_PIN=PB0
 CC_OPT		+=	-D RBSIZE=31
+CC_OPT		+=	-D VARIANT=$(VARIANT)
+
+ifeq "$(REMOTE)" "EUROPA"
+CC_OPT		+=	-D TINYIR_REMOTE="\"ir-europa-sr150.h\""
+endif
+ifeq "$(REMOTE)" "DAEWOO"
+CC_OPT		+=	-D TINYIR_REMOTE="\"ir-daewoo.h\""
+endif
 
 LD_OPT		+=	-mmcu=attiny85
 LD_OPT		+=	-Wl,--gc-sections
