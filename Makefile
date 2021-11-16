@@ -32,8 +32,10 @@ GAR			=	avr-ar
 OBJCOPY		=	avr-objcopy
 
 # Build options
-REMOTE		?= DAEWOO
-VARIANT		?= RGB
+#REMOTE		?= DAEWOO
+#VARIANT		?= RGB
+REMOTE		?= EUROPA
+VARIANT		?= MONO
 
 CC_OPT		+=	-mmcu=attiny85
 CC_OPT		+=	-fno-builtin

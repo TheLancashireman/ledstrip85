@@ -56,7 +56,7 @@
 
 /* Mappings from Europa SR-150 keys to ledstrip controls
 */
-#define BTN_OFF		IRBTN_ONOFF
+#define BTN_OFF		IRBTN_STANDBY
 #define BTN_M1		IRBTN_1
 #define BTN_M2		IRBTN_2
 #define BTN_M3		IRBTN_3
@@ -68,15 +68,15 @@
 #define BTN_M9		IRBTN_9
 #define BTN_M10		IRBTN_0
 
-#define BTN_FASTER	IRBTN_IPLUS
-#define BTN_SLOWER	IRBTN_IMINUS
+#define BTN_FASTER	IRBTN_CH_UP
+#define BTN_SLOWER	IRBTN_CH_DN
 
-#define BTN_L1u		IRBTN_SPLP
-#define BTN_L1d		IRBTN_LEFT
-#define BTN_L2u		IRBTN_PRPLUS
-#define BTN_L2d		IRBTN_OK
-#define BTN_L3u		IRBTN_MENU
-#define BTN_L3d		IRBTN_RIGHT
+#define BTN_L1u		IRBTN_VID_UP
+#define BTN_L1d		IRBTN_VID_DN
+#define BTN_L2u		IRBTN_AB
+#define BTN_L2d		IRBTN_VH
+#define BTN_L3u		IRBTN_AUD_UP
+#define BTN_L3d		IRBTN_AUD_DN
 
 #else
 #error "Unknown/unsupported handset"
