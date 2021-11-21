@@ -26,14 +26,15 @@
 */
 void mode_flicker(void)
 {
+	unsigned long r;
 	for (;;)
 	{
-		sr_r = lfsr(sr_r, 0x8, 0x20000);
-		pin_set(LED_R, ( ((sr_r & 0x1) == 0) ) ? HIGH : LOW);
-		sr_g = lfsr(sr_g, 0x8, 0x100000);
-		pin_set(LED_G, ( ((sr_g & 0x1) == 0) ) ? HIGH : LOW);
-		sr_b = lfsr(sr_b, 0x20, 0x80000);
-		pin_set(LED_B, ( ((sr_b & 0x1) == 0) ) ? HIGH : LOW);
+		r = lfsr_r();
+		pin_set(LED_R, ( ((r & 0x1) == 0) ) ? HIGH : LOW);
+		r = lfsr_g();
+		pin_set(LED_G, ( ((r & 0x1) == 0) ) ? HIGH : LOW);
+		r = lfsr_b();
+		pin_set(LED_B, ( ((r & 0x1) == 0) ) ? HIGH : LOW);
 		vdelay(1000);
 	}
 }

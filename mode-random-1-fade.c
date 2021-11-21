@@ -24,11 +24,15 @@
 void mode_random_1_fade(void)
 {
 	char r_state = 0, g_state = 0, b_state = 0;
+	unsigned long sr;
 	for (;;)
 	{
-		sr_r = lfsr(sr_r, 0x8, 0x20000);
+		/* Crank the LFSR twice to get two new bits
+		*/
+		(void)lfsr_g();
+		sr = lfsr_g();
 
-		switch ( sr_r & 0x03 )
+		switch ( sr & 0x03 )
 		{
 		case 1:						/* Change LED_R */
 			if ( r_state )

@@ -101,4 +101,30 @@ static inline void vdelay(unsigned long ms)
 	tick_delay(us_to_ticks(ms*100*(20-speed)));
 }
 
+/* lfsr_r() - crank the "red" lfsr
+*/
+static inline unsigned long lfsr_r(void)
+{
+	sr_r = lfsr(sr_r, 0x8, 0x20000);
+	return sr_r;
+}
+
+/* lfsr_g() - crank the "green" lfsr
+ *
+ * This is the longest of the LSFRs.
+*/
+static inline unsigned long lfsr_g(void)
+{
+	sr_g = lfsr(sr_g, 0x8, 0x100000);
+	return sr_g;
+}
+
+/* lfsr_b() - crank the "blue" lfsr
+*/
+static inline unsigned long lfsr_b(void)
+{
+	sr_b = lfsr(sr_b, 0x20, 0x80000);
+	return sr_b;
+}
+
 #endif
