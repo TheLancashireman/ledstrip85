@@ -437,17 +437,20 @@ void tick_delay(unsigned long tix)
 */
 void mode_check(void)
 {
-	u16_t ir_data;
+	ir_key_t ir_data;
 	char newmode = mode;
 
 	if ( ir_receive(&ir_data) )
 	{
 #if DBG
-#ifdef IR_EUROPA_SR150_H
-		printf(PSTR("k=%08x\n"), ir_data);
-#else
-		printf(PSTR("k=%02x\n"), ir_data & 0xff);
-#endif
+		u32_t ir_sr = (u32_t)ir.shiftreg;
+		printf(PSTR("sr=%08lx\n"), ir_sr);
+		if ( sizeof(ir_data) == 1 )
+			printf(PSTR("k=%02x\n"), ir_data);
+		else if ( sizeof(ir_data) == 2 )
+			printf(PSTR("k=%04x\n"), ir_data);
+		else
+			printf(PSTR("k=%08lx\n"), ir_data);
 #endif
 
 		if ( ir_data == lastpress )
@@ -456,7 +459,7 @@ void mode_check(void)
 			*/
 			if ( (read_time_32() - lastpresstime) < REPEAT_DELAY )
 			{
-				ir_data = 0xffff;
+				ir_data = IRBTN_NONE;
 			}
 		}
 		else
