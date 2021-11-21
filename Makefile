@@ -76,6 +76,8 @@ OBJS		+=	$(OBJ_DIR)/mode-8-fade.o
 OBJS		+=	$(OBJ_DIR)/mode-3-fade.o
 OBJS		+=	$(OBJ_DIR)/mode-variable.o
 OBJS		+=	$(OBJ_DIR)/mode-flicker.o
+OBJS		+=	$(OBJ_DIR)/mode-random-1-fade.o
+
 OBJS		+=	$(OBJ_DIR)/mode-red.o
 OBJS		+=	$(OBJ_DIR)/mode-green.o
 OBJS		+=	$(OBJ_DIR)/mode-blue.o

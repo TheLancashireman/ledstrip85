@@ -76,18 +76,18 @@ int main(void)
 
 		switch (mode)
 		{
-		case 0:		mode_all_off();		break;
-		case 1:		mode_all_on();		break;
-		case 2:		mode_3_cycle();		break;
-		case 3:		mode_8_cycle();		break;
-		case 4:		mode_8_fade();		break;
-		case 5:		mode_3_fade();		break;
-		case 6:		mode_variable();	break;
-		case 7:		mode_flicker();		break;
-		case 8:		mode_red();			break;
-		case 9:		mode_green();		break;
-		case 10:	mode_blue();		break;
-		default:	mode_all_on();		break;		/* Default to ON */
+		case 0:		mode_all_off();			break;
+		case 1:		mode_all_on();			break;
+		case 2:		mode_3_cycle();			break;
+		case 3:		mode_8_cycle();			break;
+		case 4:		mode_8_fade();			break;
+		case 5:		mode_3_fade();			break;
+		case 6:		mode_variable();		break;
+		case 7:		mode_flicker();			break;
+		case 8:		mode_random_1_fade();	break;
+		case 9:		mode_green();			break;
+		case 10:	mode_blue();			break;
+		default:	mode_all_on();			break;		/* Default to ON */
 		}
 	}
 
@@ -150,7 +150,7 @@ void fade_down(int pin)
 	pin_set(pin, LOW);
 }
 
-/* fade_down() - gradually change the intensity of two LEDs - one up, one down.
+/* fade_up_down() - gradually change the intensity of two LEDs - one up, one down.
  *
  * The outer loop controls the intensity. The inner loop creates the PWM with a period of 10 ms with
  * the two LEDs working in opposite directions.

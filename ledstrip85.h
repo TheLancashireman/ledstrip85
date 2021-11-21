@@ -63,17 +63,21 @@ extern jmp_buf jb;
 
 /* Mode functions. For descriptions, see the corresponding C file
 */
-extern void mode_all_off(void)	__attribute__ ((noreturn));
-extern void mode_all_on(void)	__attribute__ ((noreturn));
-extern void mode_3_cycle(void)	__attribute__ ((noreturn));
-extern void mode_8_cycle(void)	__attribute__ ((noreturn));
-extern void mode_8_fade(void)	__attribute__ ((noreturn));
-extern void mode_3_fade(void)	__attribute__ ((noreturn));
-extern void mode_variable(void) __attribute__ ((noreturn));
-extern void mode_flicker(void)	__attribute__ ((noreturn));
-extern void mode_red(void)		__attribute__ ((noreturn));
-extern void mode_green(void)	__attribute__ ((noreturn));
-extern void mode_blue(void)		__attribute__ ((noreturn));
+extern void mode_all_off(void)			__attribute__ ((noreturn));
+extern void mode_all_on(void)			__attribute__ ((noreturn));
+extern void mode_3_cycle(void)			__attribute__ ((noreturn));
+extern void mode_8_cycle(void)			__attribute__ ((noreturn));
+extern void mode_8_fade(void)			__attribute__ ((noreturn));
+extern void mode_3_fade(void)			__attribute__ ((noreturn));
+extern void mode_variable(void) 		__attribute__ ((noreturn));
+extern void mode_flicker(void)			__attribute__ ((noreturn));
+extern void mode_random_1_fade(void)	__attribute__ ((noreturn));
+
+/* Obsolescent ...
+*/
+extern void mode_red(void)				__attribute__ ((noreturn));
+extern void mode_green(void)			__attribute__ ((noreturn));
+extern void mode_blue(void)				__attribute__ ((noreturn));
 
 /* Global functions. For descriptions, see ledstrip85.c
 */
