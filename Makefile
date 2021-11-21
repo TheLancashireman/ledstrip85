@@ -68,6 +68,17 @@ LD_LIB		+=	-lm
 
 OBJS		+=	$(OBJ_DIR)/ledstrip85.o
 OBJS		+=	$(OBJ_DIR)/lfsr.o
+OBJS		+=	$(OBJ_DIR)/mode-all-off.o
+OBJS		+=	$(OBJ_DIR)/mode-all-on.o
+OBJS		+=	$(OBJ_DIR)/mode-3-cycle.o
+OBJS		+=	$(OBJ_DIR)/mode-8-cycle.o
+OBJS		+=	$(OBJ_DIR)/mode-8-fade.o
+OBJS		+=	$(OBJ_DIR)/mode-3-fade.o
+OBJS		+=	$(OBJ_DIR)/mode-variable.o
+OBJS		+=	$(OBJ_DIR)/mode-flicker.o
+OBJS		+=	$(OBJ_DIR)/mode-red.o
+OBJS		+=	$(OBJ_DIR)/mode-green.o
+OBJS		+=	$(OBJ_DIR)/mode-blue.o
 
 VPATH		+=	$(TLIB_DIR)
 VPATH		+=	$(TIO_DIR)
