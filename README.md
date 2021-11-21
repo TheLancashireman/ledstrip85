@@ -24,9 +24,9 @@ The modes of operation are selected by the numerical keys on the remote-control 
 * 5 - Cycles through the LEDs in turn. The change is gradual; at any time, one LED fades up while another fades down.
 * 6 - The intensity of each LED is controlled individually using six keys on the remote control.
 * 7 - Each LED turns on and off in a pseudo-random sequence. Each LED has its own sequence.
-* 8 - "Red" LED on, others off.
-* 9 - "Green" LED on, others off.
-* 0 - "Blue" LED on, others off.
+* 8 - Each cycle, a randomly-chosen LED is faded up or down depending on previous state. Or no change.
+* 9 - "Green" LED on, others off. Obsolescent.
+* 0 - "Blue" LED on, others off. Obsolescent.
 
 The on/off or standby key of the remote-control handset turns all the LEDs off.
 
