@@ -52,8 +52,6 @@
 
 #elif defined IR_EUROPA_SR150_H
 
-#warning "Europa SR-150 to do"
-
 /* Mappings from Europa SR-150 keys to ledstrip controls
 */
 #define BTN_OFF		IRBTN_STANDBY
