@@ -25,7 +25,7 @@ The modes of operation are selected by the numerical keys on the remote-control 
 * 6 - The intensity of each LED is controlled individually using six keys on the remote control.
 * 7 - Each LED turns on and off in a pseudo-random sequence. Each LED has its own sequence.
 * 8 - Each cycle, a randomly-chosen LED is faded up or down depending on previous state. Or no change.
-* 9 - "Green" LED on, others off. Obsolescent.
+* 9 - Twinkle - at random intervals, a random LED is set to a random intensity
 * 0 - "Blue" LED on, others off. Obsolescent.
 
 The on/off or standby key of the remote-control handset turns all the LEDs off.
