@@ -72,6 +72,7 @@ extern void mode_3_fade(void)			__attribute__ ((noreturn));
 extern void mode_variable(void) 		__attribute__ ((noreturn));
 extern void mode_flicker(void)			__attribute__ ((noreturn));
 extern void mode_random_1_fade(void)	__attribute__ ((noreturn));
+extern void mode_twinkle(void)			__attribute__ ((noreturn));
 
 /* Obsolescent ...
 */

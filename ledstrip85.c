@@ -85,7 +85,7 @@ int main(void)
 		case 6:		mode_variable();		break;
 		case 7:		mode_flicker();			break;
 		case 8:		mode_random_1_fade();	break;
-		case 9:		mode_green();			break;
+		case 9:		mode_twinkle();			break;
 		case 10:	mode_blue();			break;
 		default:	mode_all_on();			break;		/* Default to ON */
 		}
