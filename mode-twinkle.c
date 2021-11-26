@@ -26,10 +26,12 @@
  * Every xx loops, choose one LED at random and set its intensity to one
  * of four values, also chosen randomly.
  *
- * xx is determined by speed:
- *		speed = 0, xx = 10000
- *		speed = 19, xx = 500
- * 		==> xx = 10000/(speed+1)
+ * xx is determined by speed and random factor:
+ *		speed = 0, yy = 10000
+ *		speed = 19, yy = 500
+ * 		==> yy = 10000/(speed+1)
+ *		rnd = 0..7
+ *		xx = 2*yy/(rnd+1)  
 */
 
 #if VARIANT == RGB
@@ -55,7 +57,13 @@ void mode_twinkle(void)
 			i--;
 			if ( i <= 0 )
 			{
-				i = 10000/(speed+1);
+				/* Crank the LFSR three times to get three new bits
+				*/
+				(void)lfsr_r();
+				(void)lfsr_r();
+				u8_t rnd = lfsr_r() & 0x07;
+
+				i = 20000/((speed+1)*(rnd+1));
 
 				/* Crank the LFSR twice to get two new bits
 				*/
